@@ -1,6 +1,7 @@
-# php-base-image
+# php-base-image for laravel
 
-PHP base image for version 8.2
+PHP base image for Laravel with PHP version 8.2 debian based.
+The image contains important packages for laravel.
 
 Packages are included:
 

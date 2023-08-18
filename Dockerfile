@@ -1,3 +1,4 @@
+# use the official php image
 FROM php:8.2-fpm AS build
 
 # add dependencies
