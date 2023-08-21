@@ -107,4 +107,4 @@ WORKDIR /var/www
 
 # entrypoint and command
 ENTRYPOINT ["/usr/bin/supervisord", "-c"] 
-CMD ["/etc/supervisord.conf"]
+CMD ["/etc/supervisor/supervisord.conf"]
