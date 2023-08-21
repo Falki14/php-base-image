@@ -52,7 +52,11 @@ RUN apt update && \
         nginx \
         supervisor \
         unzip \
-        zip
+        zip \
+        libjpeg-dev \
+        libssl-dev \
+        libzip-dev \
+        libmagickwand-dev
 
 # enable php extensions
 COPY --from=build /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
