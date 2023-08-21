@@ -81,17 +81,20 @@ RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
 # php configuration 
 RUN ln -s /usr/bin/php8 /usr/bin/php &&\ 
     mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-#COPY ./config/php/custom.ini "$PHP_INI_DIR/conf.d/custom.ini"
+COPY ./config/fpm/pool.d/app.conf  /usr/local/etc/php-fpm.d/www.conf
+COPY ./config/fpm/conf.d/custom.ini "$PHP_INI_DIR/conf.d/custom.ini"
+
 #
 # nginx configuration
-#COPY ./config/nginx/ /etc/nginx/
+COPY ./config/nginx/default /etc/nginx/conf.d/default.conf
+COPY ./config/nginx/nginx.conf /etc/nginx/
 
 # www-data crontab for laravel artisan schedule
-#COPY --chown=root:${group} ./config/cron/www-data /etc/crontabs/
-#RUN chmod 0600 /etc/crontabs/www-data
+COPY --chown=root:${group} ./config/cron/www-data /etc/crontabs/
+RUN chmod 0600 /etc/crontabs/www-data
 
 # add supervisor config
-#COPY ./config/supervisord/ /etc/
+COPY ./config/supervisord/ /etc/
 
 # nginx port
 EXPOSE $NGINX_PORT
