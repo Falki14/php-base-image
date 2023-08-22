@@ -56,7 +56,6 @@ RUN apt update && \
         libjpeg-dev \
         libssl-dev \
         libzip-dev \
-        procps \
         libmagickwand-dev
 
 # enable php extensions
