@@ -56,6 +56,7 @@ RUN apt update && \
         libjpeg-dev \
         libssl-dev \
         libzip-dev \
+        procps \
         libmagickwand-dev
 
 # enable php extensions
@@ -80,7 +81,7 @@ RUN docker-php-ext-enable \
 
 # set timezone
 RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-    echo ${TZ} > /etc/timezone 
+    echo ${TZ} > /etc/timezone && useradd -s /bin/false nginx
 
 # php configuration 
 RUN ln -s /usr/bin/php8 /usr/bin/php &&\ 
@@ -95,7 +96,7 @@ COPY ./config/nginx/nginx.conf /etc/nginx/
 
 # www-data crontab for laravel artisan schedule
 COPY --chown=root:${group} ./config/cron/www-data /etc/crontabs/
-RUN chmod 0600 /etc/crontabs/www-data
+RUN chmod 0600 /etc/crontabs/www-data && rm /usr/local/etc/php-fpm.d/docker.conf && rm /usr/local/etc/php-fpm.d/zz-docker.conf && rm /etc/nginx/sites-enabled/default
 
 # add supervisor config
 COPY ./config/supervisord/ /etc/
