@@ -54,9 +54,9 @@ RUN apt update && \
         unzip \
         zip \
         libjpeg-dev \
-        libssl-dev \
         libzip-dev \
-        libmagickwand-dev
+        libmagickwand-dev && \
+        apt-get purge -y --auto-remove gcc g++ make
 
 # enable php extensions
 COPY --from=build /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
