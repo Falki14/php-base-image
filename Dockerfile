@@ -12,7 +12,7 @@ RUN apt update \
         libjpeg-dev \
         libssl-dev \
         libzip-dev \
-        libmagickwand-dev 
+        libmagickwand-dev \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -60,7 +60,7 @@ RUN apt update \
         libjpeg-dev \
         libzip-dev \
         libmagickwand-dev \
-    && apt-get purge -y --auto-remove gcc g++ make
+    && apt-get purge -y --auto-remove gcc g++ make \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
