@@ -67,6 +67,7 @@ RUN apt update \
 
 # Enable php extensions
 COPY --from=build /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --from=build /usr/local/etc/ /usr/local/etc/
 RUN docker-php-ext-enable \
     dom \
     ctype \
