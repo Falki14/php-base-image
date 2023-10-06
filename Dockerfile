@@ -1,10 +1,19 @@
 # Use the official php image
 FROM php:8.2-fpm AS build
 
+ENV TZ=Europe/Berlin \
+    NGINX_PORT=80
+
 # Add dependencies
 RUN apt update \
     && apt dist-upgrade -y \
     && apt install -y --no-install-recommends \
+        ca-certificates \
+        cron \
+        nginx \
+        supervisor \
+        unzip \
+        zip \
         cmake \
         libfreetype6-dev \
         libfontconfig1-dev \
@@ -37,54 +46,29 @@ RUN docker-php-ext-configure gd \
         simplexml \
         sockets \
         zip \
-    && pecl install imagick 
+    && pecl install imagick \
+    && docker-php-ext-enable \
+        dom \
+        ctype \
+        exif \
+        gd \
+        imagick \
+        intl \
+        opcache \
+        pdo \
+        pdo_mysql \
+        session \
+        phar \
+        xml \
+        fileinfo \
+        simplexml \
+        sockets \
+        zip
 
-FROM php:8.2-fpm AS final
-
-ARG user=www-data
-ARG group=${user}
-
-ENV TZ=Europe/Berlin \
-    NGINX_PORT=80
-
-# Add apt packages
-RUN apt update \
-    && apt dist-upgrade -y \
-    && apt install -y --no-install-recommends \
-        ca-certificates \
-        cron \
-        nginx \
-        supervisor \
-        unzip \
-        zip \
-        libjpeg-dev \
-        libzip-dev \
-        libmagickwand-dev \
-    && apt-get purge -y --auto-remove gcc g++ make \
+RUN apt-get purge -y --auto-remove gcc g++ make \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Enable php extensions
-COPY --from=build /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
-COPY --from=build /usr/local/etc/ /usr/local/etc/
-RUN docker-php-ext-enable \
-    dom \
-    ctype \
-    exif \
-    gd \
-    imagick \
-    intl \
-    opcache \
-    pdo \
-    pdo_mysql \
-    session \
-    phar \
-    xml \
-    fileinfo \
-    simplexml \
-    sockets \
-    zip
 
 # Set timezone
 RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime \
@@ -118,7 +102,7 @@ EXPOSE $NGINX_PORT
 #COPY ./healthcheck.sh /healthcheck.sh
 #HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
 
-WORKDIR /var/www
+WORKDIR /app
 
 # Entrypoint and command
 ENTRYPOINT ["/usr/bin/supervisord", "-c"] 

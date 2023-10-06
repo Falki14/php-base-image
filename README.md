@@ -26,3 +26,6 @@ Packages are included:
 * simplexml
 * sockets
 * zip
+
+# Mountpoint
+Please mount your application into /app. This is the default path.
