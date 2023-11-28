@@ -21,6 +21,7 @@ RUN apt update \
         libssl-dev \
         libzip-dev \
         libmagickwand-dev  \
+        ghostscript \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
