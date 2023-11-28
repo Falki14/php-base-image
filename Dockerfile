@@ -1,5 +1,5 @@
 # Use the official php image
-FROM php:8.2-fpm AS build
+FROM php:8.3-fpm AS build
 
 ENV TZ=Europe/Berlin \
     NGINX_PORT=80
