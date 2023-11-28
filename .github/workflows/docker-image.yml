@@ -34,4 +34,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: falki141/php-base-image:${{ github.ref }}
+          tags: falki141/php-base-image:${{ github.ref_name }}
