@@ -12,16 +12,14 @@ RUN apt update \
         cron \
         nginx \
         supervisor \
-        unzip \
-        zip \
-        cmake \
-        libfreetype6-dev \
-        libfontconfig1-dev \
-        libxml++2.6-dev \
+        zlib1g-dev \
+        libpng-dev \
         libjpeg-dev \
+        libfreetype-dev \
+        libxml2-dev \
         libssl-dev \
         libzip-dev \
-        libmagickwand-dev \
+        libmagickwand-dev  \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
