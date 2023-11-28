@@ -11,6 +11,7 @@ RUN apt update \
         ca-certificates \
         cron \
         nginx \
+        imagemagick \
         supervisor \
         zlib1g-dev \
         libpng-dev \
@@ -21,7 +22,6 @@ RUN apt update \
         libzip-dev \
         libmagickwand-dev  \
     && apt-get clean \
-    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install php extensions
