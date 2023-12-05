@@ -11,7 +11,6 @@ RUN apt update \
         ca-certificates \
         cron \
         nginx \
-        imagemagick \
         supervisor \
         zlib1g-dev \
         libpng-dev \
