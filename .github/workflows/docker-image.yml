@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - "main"
+      - "dev"
 
 jobs:
   base-ubuntu:
@@ -27,10 +28,68 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push php8.2
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: php8.2_fpm_nginx/.
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: falki141/php-base-image:latest
+          tags: falki141/php-base-image:8.2-fpm-nginx
+          
+      -
+        name: Build and push php8.3
+        uses: docker/build-push-action@v4
+        with:
+          context: php8.3_fpm_nginx/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:8.3
+          
+      -
+        name: Build and push php8.2-all-in
+        uses: docker/build-push-action@v4
+        with:
+            context: php8.2_all_in/.
+            platforms: linux/amd64,linux/arm64
+            push: true
+            tags: falki141/php-base-image:8.2-all-in
+      -
+        name: Build and push php8.3-all-in
+        uses: docker/build-push-action@v4
+        with:
+          context: php8.3_all_in/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:8.3-all-in
+      -
+        name: Build and push php8.2-worker
+        uses: docker/build-push-action@v4
+        with:
+          context: php8.2_worker/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:8.2-worker
+      -
+        name: Build and push php8.3-worker
+        uses: docker/build-push-action@v4
+        with:
+          context: php8.3_worker/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:8.3-worker
+      -
+        name: Build and push frankenphp8.2
+        uses: docker/build-push-action@v4
+        with:
+          context: frankenphp8.2/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:frankenphp8.2
+      -
+        name: Build and push frankenphp8.3
+        uses: docker/build-push-action@v4
+        with:
+          context: frankenphp8.3/.
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: falki141/php-base-image:frankenphp8.3

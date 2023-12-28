@@ -1,6 +1,6 @@
 # php-base-image for laravel
 
-PHP base image for Laravel with PHP version 8.2 debian based.
+PHP base image for Laravel with PHP version 8.2 and 8.3 debian based.
 The image contains important packages for laravel.
 
 Dockerhub:
