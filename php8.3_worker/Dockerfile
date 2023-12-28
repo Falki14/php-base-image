@@ -72,7 +72,6 @@ RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime \
 # PHP configuration 
 RUN ln -s /usr/bin/php8 /usr/bin/php \ 
     && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-COPY ./config/fpm/pool.d/app.conf  /usr/local/etc/php-fpm.d/www.conf
 COPY ./config/fpm/conf.d/custom.ini "$PHP_INI_DIR/conf.d/custom.ini"
 
 # www-data crontab for laravel artisan schedule

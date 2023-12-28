@@ -84,9 +84,7 @@ COPY ./config/nginx/default /etc/nginx/conf.d/default.conf
 COPY ./config/nginx/nginx.conf /etc/nginx/
 
 # www-data crontab for laravel artisan schedule
-COPY --chown=root:crontab ./config/cron/www-data /var/spool/cron/crontabs/root
-RUN chmod 0600 /var/spool/cron/crontabs/root \
-    && rm /usr/local/etc/php-fpm.d/docker.conf \
+RUN rm /usr/local/etc/php-fpm.d/docker.conf \
     && rm /usr/local/etc/php-fpm.d/zz-docker.conf \
     && rm /etc/nginx/sites-enabled/default
 
