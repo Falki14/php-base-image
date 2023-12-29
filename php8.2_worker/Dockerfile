@@ -79,9 +79,7 @@ COPY ./config/fpm/conf.d/custom.ini "$PHP_INI_DIR/conf.d/custom.ini"
 
 # www-data crontab for laravel artisan schedule
 COPY --chown=root:crontab ./config/cron/www-data /var/spool/cron/crontabs/root
-RUN chmod 0600 /var/spool/cron/crontabs/root \
-    && rm /usr/local/etc/php-fpm.d/docker.conf \
-    && rm /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN chmod 0600 /var/spool/cron/crontabs/root
 
 # Add Supervisord config
 COPY ./config/supervisord/ /etc/
