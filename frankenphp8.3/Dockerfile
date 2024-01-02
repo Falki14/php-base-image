@@ -1,0 +1,50 @@
+# Use the official frankenphp image
+FROM dunglas/frankenphp
+
+ENV TZ=Europe/Berlin
+
+# Add dependencies
+RUN apt update \
+    && apt dist-upgrade -y \
+    && apt install libzip-dev libjpeg-dev libpng-dev libfreetype6-dev libxml++2.6-dev libssl-dev -y
+
+# Install php extensions
+RUN docker-php-ext-configure gd \
+        --with-jpeg=/usr/include/ \
+        --with-freetype=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) \
+        dom \
+        ctype \
+        exif \
+        gd \
+        intl \
+        opcache \
+        pdo \
+        pdo_mysql \
+        session \
+        phar \
+        xml \
+        fileinfo \
+        simplexml \
+        sockets \
+        zip \
+    && docker-php-ext-enable \
+        dom \
+        ctype \
+        exif \
+        gd \
+        intl \
+        opcache \
+        pdo \
+        pdo_mysql \
+        session \
+        phar \
+        xml \
+        fileinfo \
+        simplexml \
+        sockets \
+        zip
+
+# Set timezone
+RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone
