@@ -6,7 +6,7 @@ The image contains important packages for laravel.
 Dockerhub:
 https://hub.docker.com/r/falki141/php-base-image
 
-Packages are included:
+Packages are included (nginx is not included in workers and frankenphp):
 
 * nginx
 * cron
@@ -29,3 +29,9 @@ Packages are included:
 
 # Mountpoint
 Please mount your application into /app. This is the default path.
+
+Example:
+
+```bash
+docker run -p 8080:80 -d --name test -v $PWD:/app -d falki141/php-base-image:8.3-all-in
+```
