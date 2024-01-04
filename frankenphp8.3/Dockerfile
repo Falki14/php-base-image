@@ -1,5 +1,5 @@
 # Use the official frankenphp image
-FROM frankenphp:latest-php8.3-bookworm
+FROM dunglas/frankenphp:latest-php8.3-bookworm
 
 ENV TZ=Europe/Berlin
 
