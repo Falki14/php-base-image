@@ -27,6 +27,7 @@ RUN docker-php-ext-configure gd \
         simplexml \
         sockets \
         zip \
+    && pecl install redis \
     && docker-php-ext-enable \
         dom \
         ctype \
@@ -42,7 +43,8 @@ RUN docker-php-ext-configure gd \
         fileinfo \
         simplexml \
         sockets \
-        zip
+        zip \
+        redis
 
 # Set timezone
 RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime \

@@ -43,6 +43,7 @@ RUN docker-php-ext-configure gd \
         simplexml \
         sockets \
         zip \
+    && pecl install redis \
     && docker-php-ext-enable \
         dom \
         ctype \
@@ -58,7 +59,8 @@ RUN docker-php-ext-configure gd \
         fileinfo \
         simplexml \
         sockets \
-        zip
+        zip \
+        redis
 
 RUN apt-get purge -y --auto-remove gcc g++ make \
     && apt-get clean \
