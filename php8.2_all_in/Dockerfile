@@ -12,6 +12,7 @@ RUN apt update \
         nginx \
         unzip \
         zip \
+        cron \
         supervisor \
         libfreetype6-dev \
         libfontconfig1-dev \

@@ -13,6 +13,7 @@ RUN apt update \
         unzip \
         zip \
         cmake \
+        cron \
         libfreetype6-dev \
         libfontconfig1-dev \
         libxml++2.6-dev \
