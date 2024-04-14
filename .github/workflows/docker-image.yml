@@ -76,28 +76,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: falki141/php-base-image:8.3-worker
-      -
-        name: Build and push frankenphp8.2
-        uses: docker/build-push-action@v4
-        with:
-          context: frankenphp8.2/.
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: falki141/php-base-image:frankenphp8.2
-      -
-        name: Build and push frankenphp8.3
-        uses: docker/build-push-action@v4
-        with:
-          context: frankenphp8.3/.
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: falki141/php-base-image:frankenphp8.3
-
-      -
-        name: Build and push latest
-        uses: docker/build-push-action@v4
-        with:
-          context: latest/.
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: falki141/php-base-image:latest
