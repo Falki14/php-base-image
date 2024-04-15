@@ -21,6 +21,7 @@ RUN apt update \
         libssl-dev \
         libzip-dev \
         libmagickwand-dev \
+        libwebp-dev \
     && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -29,6 +30,7 @@ RUN apt update \
 RUN docker-php-ext-configure gd \
         --with-jpeg=/usr/include/ \
         --with-freetype=/usr/include/ \
+        --with-webp=/usr/include/ \
     && docker-php-ext-install -j$(nproc) \
         dom \
         ctype \
