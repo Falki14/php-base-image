@@ -101,10 +101,6 @@ COPY ./config/supervisord/ /etc/
 # Nginx port
 EXPOSE $NGINX_PORT
 
-# Healthcheck
-#COPY ./healthcheck.sh /healthcheck.sh
-#HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ["/healthcheck.sh"]
-
 WORKDIR /app
 
 # Entrypoint and command
